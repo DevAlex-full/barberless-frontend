@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Design tokens — BarberLess
+ *
+ * Paleta oficial provisória (Fase 4): bronze, marfim, bases clara/escura.
+ * Os tokens são declarados em HSL "cru" (sem hsl()) para permitir que o
+ * Tailwind aplique opacidade dinamicamente via `hsl(var(--token) / <alpha>)`.
+ *
+ * As fontes de marca (display/sans) ainda não foram definidas pelo
+ * proprietário (ver PRD, pendência "Manual de marca") — por isso os
+ * tokens de fonte usam pilhas de fontes de sistema como placeholder
+ * seguro, sem depender de download externo de webfonts.
+ */
+:root {
+  /* Escala bronze */
+  --bronze-50: 30 45% 95%;
+  --bronze-100: 30 42% 88%;
+  --bronze-200: 29 40% 78%;
+  --bronze-300: 28 40% 68%;
+  --bronze-400: 27 42% 58%;
+  --bronze-500: 26 45% 48%;
+  --bronze-600: 25 48% 40%;
+  --bronze-700: 24 50% 32%;
+  --bronze-800: 23 50% 24%;
+  --bronze-900: 22 50% 16%;
+
+  /* Marfim */
+  --ivory: 40 33% 97%;
+  --ivory-muted: 40 20% 90%;
+
+  /* Tema claro (padrão) */
+  --background: 40 33% 97%;
+  --foreground: 22 25% 12%;
+  --surface: 40 30% 99%;
+  --surface-foreground: 22 25% 12%;
+  --border: 35 20% 85%;
+  --ring: var(--bronze-500);
+  --muted: 35 20% 92%;
+  --muted-foreground: 30 10% 40%;
+  --primary: var(--bronze-600);
+  --primary-foreground: 40 33% 97%;
+  --destructive: 0 65% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 140 40% 32%;
+  --success-foreground: 0 0% 100%;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: Georgia, 'Times New Roman', ui-serif, serif;
+}
+
+.dark {
+  --background: 22 20% 8%;
+  --foreground: 40 30% 92%;
+  --surface: 22 18% 11%;
+  --surface-foreground: 40 30% 92%;
+  --border: 25 15% 20%;
+  --ring: var(--bronze-400);
+  --muted: 25 15% 16%;
+  --muted-foreground: 35 12% 65%;
+  --primary: var(--bronze-400);
+  --primary-foreground: 22 25% 10%;
+  --destructive: 0 60% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 140 35% 45%;
+  --success-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  /* Respeita a preferência do usuário por menos movimento (RNF-007) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Foco visível consistente para navegação por teclado */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}

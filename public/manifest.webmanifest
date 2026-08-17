@@ -1,0 +1,11 @@
+{
+  "name": "BarberLess",
+  "short_name": "BarberLess",
+  "description": "Plataforma digital da BarberLess.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F5EE",
+  "theme_color": "#8A5A34",
+  "lang": "pt-BR",
+  "icons": []
+}
